@@ -1,6 +1,8 @@
 from Cliente import *
 from Voos import *
 from Reservas import *
+from colorama import init
+from termcolor import colored
 
 import os
 
@@ -12,14 +14,15 @@ def menuPrincipal():
     os.system('clear')
     while True:
         print('*' * 51)
-        print('Bem vindo ao sistema de passagens aéreas Sputnik 1.')
+        print(colored('Bem vindo ao sistema de passagens aéreas Sputnik 1.', 'green'))
         print('*' * 51)
         print(' ')
-        print('1 - Cadastrar')
-        print('2 - Consultar')
-        print('3 - Remover')
-        print('4 - Sair')
-        resposta = int(input('Escolha uma opção: '))
+        print(colored('1 - Cadastrar', 'blue', 'on_white'))
+        print(colored('2 - Consultar', 'blue','on_white'))
+        print(colored('3 - Remover','blue', 'on_white'))
+        print(colored('4 - Sair', 'blue', 'on_white'))
+        print(' ')
+        resposta = int(input(colored('Escolha uma opção: ','green')))
 
         if resposta == 1:
             menuCadastrar()
