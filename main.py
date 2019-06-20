@@ -19,8 +19,8 @@ def menuPrincipal():
         print(' ')
         print(colored('1 - Cadastrar', 'blue', 'on_white'))
         print(colored('2 - Consultar', 'blue','on_white'))
-        print(colored('3 - Remover','blue', 'on_white'))
-        print(colored('4 - Sair', 'blue', 'on_white'))
+        print(colored('3 - Remover  ','blue', 'on_white'))
+        print(colored('4 - Sair     ', 'blue', 'on_white'))
         print(' ')
         resposta = int(input(colored('Escolha uma opção: ','green')))
 
@@ -39,35 +39,29 @@ def menuPrincipal():
         else:
             print('Tente novamente.')
 
-# cadastro
 def menuCadastrar():
     os.system('clear')
     print('----------------------------')
     for num, voo in enumerate(voosRegistrados):
-        print(num, voo.numeroDeVoo)
+        print(num, '-', voo.numeroDeVoo)
+        print(voo.passageiros)
     print('----------------------------')
 
     resposta = int(input('qual vôo você quer \n'))
+    vooEscolhido = voosRegistrados[resposta]
 
-    reservarPassagem(resposta)
+    vooEscolhido.reservarPassagem(cliente)
     menuPrincipal()
 
-def reservarPassagem(index):
-    vooEscolhido = voosRegistrados[index]
-    vooEscolhido.passageirosAtuais.append(cliente)
-    cliente.voosComprados.append(vooEscolhido)
-
-# consulta
 def menuConsultar():
     os.system('clear')
     print('----------------------------')
     for num, voo in enumerate(cliente.voosComprados):
-        print(num, voo.numeroDeVoo)
+        print(num, '-', voo.numeroDeVoo)
     print('----------------------------')
     input()
     menuPrincipal()
 
-# remoção
 def menuRemover():
     os.system('clear')
     print('----------------------------')
@@ -76,11 +70,14 @@ def menuRemover():
     print('----------------------------')
 
     resposta = int(input('qual vôo você quer remover\n'))
-    removerPassagem(resposta)
+
+    vooPassagemCancelada = cliente.voosComprados[resposta]
+
+    cancelarPassagem(vooPassagemCancelada)
     menuPrincipal()
 
-def removerPassagem(index):
-    cliente.voosComprados.pop(index)
-    # tirar esse cliente da lista desse vôo
+def cancelarPassagem(vooPassagemCancelada):
+    cliente.removerVoo(vooPassagemCancelada)
+    vooPassagemCancelada.removerPassageiro(cliente)
 
 menuPrincipal()
