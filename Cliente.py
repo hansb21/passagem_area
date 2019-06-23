@@ -3,10 +3,8 @@ class Cliente:
         self.nome = nome
         self.cpf  = cpf
         self.voosComprados = []
-    
-    # def __init__(self):
-    #     self.__dict = {}
-    
-    # def __len__(self):
-    #     return len()
-    
+
+    def removerVoo(self, vooPassagemCancelada):
+        for num, cont in enumerate(self.voosComprados):
+            if cont(1) == vooPassagemCancelada:
+                self.voosComprados.pop(num)
