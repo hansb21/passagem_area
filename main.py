@@ -17,10 +17,10 @@ def menuPrincipal():
         print(colored('Bem vindo ao sistema de passagens aéreas Sputnik 1.', 'green'))
         print('*' * 51)
         print(' ')
-        print(colored('1 - Cadastrar', 'blue', 'on_white'))
-        print(colored('2 - Consultar', 'blue','on_white'))
-        print(colored('3 - Remover  ','blue', 'on_white'))
-        print(colored('4 - Sair     ', 'blue', 'on_white'))
+        print(colored('[1] - Cadastrar', 'blue', 'on_white'), end = ' ')
+        print(colored('[2] - Consultar', 'blue','on_white'), end = ' ')
+        print(colored('[3] - Remover','blue', 'on_white'), end = ' ')
+        print(colored('[4] - Sair', 'blue', 'on_white'))
         print(' ')
         resposta = int(input(colored('Escolha uma opção: ','green')))
 
@@ -35,49 +35,68 @@ def menuPrincipal():
             break
         elif resposta == 4:
             print('Obrigado por utilizar nossos serviços.')
-            break
+            break 
         else:
             print('Tente novamente.')
 
 def menuCadastrar():
     os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(voosRegistrados):
-        print(num, '-', voo.numeroDeVoo)
-        print(voo.passageiros)
-    print('----------------------------')
 
-    resposta = int(input('qual vôo você quer \n'))
-    vooEscolhido = voosRegistrados[resposta]
+    max = len(voosRegistrados) - 1
 
-    vooEscolhido.reservarPassagem(cliente)
+    mostrarVoos(voosRegistrados)
+
+    print(colored(f'[0 - {max}] - escolher', 'blue', 'on_white'), end = ' ')
+    print(colored('[v] - voltar', 'blue', 'on_white'))
+    print('')
+    resposta = input(colored('Escolha uma opção: ','green'))
+
+    cadastrar(resposta)
     menuPrincipal()
+
+def cadastrar(resposta):
+    if resposta == 'v':
+        menuPrincipal()
+    elif 0 <= int(resposta) < len(voosRegistrados):
+        vooEscolhido = voosRegistrados[int(resposta)]
+        vooEscolhido.reservarPassagem(cliente)
+    else:
+        os.system('clear')
+        input(colored('RESPOSTA INVÁLIDA\n tente novamente\n', 'red'))
+        menuCadastrar()
 
 def menuConsultar():
     os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(cliente.voosComprados):
-        print(num, '-', voo.numeroDeVoo)
-    print('----------------------------')
-    input()
+
+    mostrarVoos(cliente.voosComprados)
+    input(colored('pressione enter para voltar', 'blue', 'on_white'))
+
     menuPrincipal()
 
 def menuRemover():
     os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(cliente.voosComprados):
-        print(num, voo.numeroDeVoo)
-    print('----------------------------')
+
+    mostrarVoos(cliente.voosComprados)
 
     resposta = int(input('qual vôo você quer remover\n'))
+    cancelarPassagem(resposta)
 
-    vooPassagemCancelada = cliente.voosComprados[resposta]
-
-    cancelarPassagem(vooPassagemCancelada)
     menuPrincipal()
 
-def cancelarPassagem(vooPassagemCancelada):
+def cancelarPassagem(index):
+    vooPassagemCancelada = cliente.voosComprados[index]
     cliente.removerVoo(vooPassagemCancelada)
     vooPassagemCancelada.removerPassageiro(cliente)
+
+def mostrarVoos(lista):
+    max = len(voosRegistrados) - 1
+
+    if max >= 1:
+        print('-'*30)
+        for num, voo in enumerate(lista):
+            voo.informacoesDeVoo(num)
+        print('-'*30)
+    else:
+        print('Nenhum voo disponível')
 
 menuPrincipal()
