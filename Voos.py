@@ -12,11 +12,18 @@ class Voos:
         self.numeroAssentos = 10
         self.assentosDisponiveis = self.numeroAssentos
         self.passageiros = []
+        self.quantidadeDePassagens = []
+        self.passageirosAtuais = []
 
     def removerPassageiro(self, passageiro):
         for num, cont in enumerate(self.passageiros):
             if cont == passageiro:
                 self.passageiros.pop(num)
+                self.quantidadeDePassagens.pop(num)
+# class Voos:
+
+#     def __init__(self):
+#         self.__dbvoo = []
 
     def informacoesDeVoo(self, num):
         margem = ' ' * 5

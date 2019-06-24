@@ -6,5 +6,5 @@ class Cliente:
 
     def removerVoo(self, vooPassagemCancelada):
         for num, cont in enumerate(self.voosComprados):
-            if cont == vooPassagemCancelada:
+            if cont(1) == vooPassagemCancelada:
                 self.voosComprados.pop(num)
