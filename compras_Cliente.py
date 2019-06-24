@@ -11,13 +11,13 @@ reserva = []
 cliente = clientesRegistrados[0]
 
 # # Menu principal com 4 opções:
-# 1 - Cadastrar 
-# 2 - Consultar 
-# 3 - Remover 
+# 1 - Cadastrar
+# 2 - Consultar
+# 3 - Remover
 # 4 - Sair
 
 
- 
+
 def menuPrincipal():
     os.system('clear')
     while True:
@@ -35,7 +35,7 @@ def menuPrincipal():
 
         if resposta == 1:
             os.system('clear')
-            
+
             print('*' * 51)
             print(' ')
             print(colored('1 - Cadastrar', 'red'))

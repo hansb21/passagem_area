@@ -1,5 +1,6 @@
 import os
-from termcolor import colored
+
+import Reservas
 
 class Voos:
     def __init__(self, num):
@@ -11,6 +12,7 @@ class Voos:
 
         self.numeroAssentos = 10
         self.assentosDisponiveis = self.numeroAssentos
+        
         self.passageiros = []
         self.quantidadeDePassagens = []
         self.passageirosAtuais = []
@@ -20,12 +22,8 @@ class Voos:
             if cont == passageiro:
                 self.passageiros.pop(num)
                 self.quantidadeDePassagens.pop(num)
-# class Voos:
 
-#     def __init__(self):
-#         self.__dbvoo = []
-
-    def informacoesDeVoo(self, num):
+    def GetinformacoesDeVoo(self, num):
         margem = ' ' * 5
 
         print(f'{num}{margem}Número do Voo: {self.numeroDeVoo}')
@@ -43,11 +41,10 @@ class Voos:
 
         preco = numPassagens*100
         print(f'o preço da passagem é {preco}')
-        print('deseja continuar?')
-        resposta = input()
 
-        if resposta == 's':
-            self.passageiros.append(cliente)
-            cliente.voosComprados.append(self)
-        else:
-            menuConsultar()
+
+        # self.passageiros.append(cliente)
+        # cliente.voosComprados.append(self)
+
+        Reservas.passagensCompradas.append({'voo': self, 'cliente': cliente, 'assentos': numPassagens})
+        print(Reservas.passagensCompradas)
