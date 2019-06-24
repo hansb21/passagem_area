@@ -3,7 +3,8 @@ from Voos import *
 from Transporte import *
 from Reservas import *
 
-voosRegistrados = [Voos(111), Transporte(222)]
+# voosRegistrados = [Voos(111), Transporte(222)]
+voosRegistrados = []
 clientesRegistrados = [Cliente('Andre', 2032130192)]
 
-passagensCompradas = []
+passagensCompradas = [] #voo, cliente, assentos

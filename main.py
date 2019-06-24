@@ -1,12 +1,16 @@
+import os
+
 from acessoCliente import *
 from acessoOperador import *
 
-a = input()
+while True:
+    a = input('operador, cliente')
+    os.system('clear')
 
-if a == '0':
-    menuOperador()
-elif a == '1':
-    menuCliente()
+    if a == '0':
+        menuOperador()
+    elif a == '1':
+        menuCliente()
 
 
 

@@ -3,7 +3,7 @@ import Reservas
 class Cliente:
     def __init__(self, nome, cpf):
         self.nome = nome
-        self.cpf  = cpf
+        self.cpf = cpf
         self.voosComprados = []
 
     def removerVoo(self, vooPassagemCancelada):
@@ -13,10 +13,7 @@ class Cliente:
 
     def getVoosComprados(self):
         voosComprad = []
-
         for i in Reservas.passagensCompradas:
             if i['cliente'] == self:
                 voosComprad.append(i['voo'])
         return voosComprad
-
-        print('não deu')

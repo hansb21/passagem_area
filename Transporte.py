@@ -21,7 +21,6 @@ class Transporte(Voos):
             input()
             return
 
-
         preco = pesoCarga*100 / self.pesoMaximoTon
         print(f'o preço da passagem é R$ {preco:.2f}')
         print('deseja continuar')
