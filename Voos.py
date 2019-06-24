@@ -5,22 +5,23 @@ class Voos:
         self.numeroDeVoo = num
 
         self.numeroMaximoPassageiros = 10
-        self.passageiros = []
+        self.__passageiros = []
         self.quantidadeDePassagens = []
         self.passageirosAtuais = []
-
+    def __len__(self):
+        return len(self.__passageiros)
+    def __getobject__(self, position):
+        return self.__passageiros[position]
+    
     def removerPassageiro(self, passageiro):
         for num, cont in enumerate(self.passageiros):
             if cont == passageiro:
-                self.passageiros.pop(num)
+                self.__passageiros.pop(num)
                 self.quantidadeDePassagens.pop(num)
-# class Voos:
 
-#     def __init__(self):
-#         self.__dbvoo = []
 
-    def getNumPassageiros():
-        return sum(quantidadeDePassagens)
+    # def getNumPassageiros():
+    #     return sum(quantidadeDePassagens) #Só usar o len() pra receber o tamanho da lista de passageiros
 
     def reservarPassagem(self, cliente):
         print('Tipo: Avião Fretado')
