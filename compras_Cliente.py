@@ -5,19 +5,19 @@ from colorama import init
 from termcolor import colored
 import time
 import os
-import main 
+
 reserva = []
 
 cliente = clientesRegistrados[0]
 
 # # Menu principal com 4 opções:
-# 1 - Cadastrar 
-# 2 - Consultar 
-# 3 - Remover 
+# 1 - Cadastrar
+# 2 - Consultar
+# 3 - Remover
 # 4 - Sair
 
 
- 
+
 def menuPrincipal():
     os.system('clear')
     while True:
@@ -25,7 +25,7 @@ def menuPrincipal():
         print(colored('Bem vindo ao sistema de passagens aéreas Sputnik 1.', 'blue'))
         print('*' * 51)
         print(' ')
-        print(main.x)
+
         print(colored('1 - Cadastrar', 'blue'))
         print(colored('2 - Consultar', 'blue'))
         print(colored('3 - Remover','blue'))
@@ -35,7 +35,7 @@ def menuPrincipal():
 
         if resposta == 1:
             os.system('clear')
-            
+
             print('*' * 51)
             print(' ')
             print(colored('1 - Cadastrar', 'red'))
