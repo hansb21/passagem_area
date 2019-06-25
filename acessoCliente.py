@@ -1,57 +1,60 @@
 import os
 
-from Reservas import *
+import reservas
 
-cliente = clientesRegistrados[0]
+def menuCliente(cliento):
+    global cliente
+    cliente = cliento
 
-def menuCliente():
-    print('Cliente')
-    a = input('cadastrar, consultar, cancelar, voltar')
-    os.system('clear')
+    print(cliente.nome)
+    while True:
+        print('Cliente')
+        opcao = input('cadastrar, consultar, cancelar, voltar')
+        os.system('clear')
 
-    if a == '0':
-        menuCadastrarPassagem()
-    elif a == '1':
-        menuConsultarPassagem()
-    elif a == '2':
-        menuCancelarPassagem()
-    else:
-        return
+        if opcao == '0':
+            menuCadastrarPassagem()
+        elif opcao == '1':
+            menuConsultarPassagem()
+        elif opcao == '2':
+            menuCancelarPassagem()
+        elif opcao == 'v':
+            break
+
 
 def menuCadastrarPassagem():
-    mostrarVoos(voosRegistrados)
+    mostrarVoos(reservas.voosRegistrados)
 
-    r = input('qual vôo você quer \n')
+    opcao = input('qual vôo você quer \n')
     os.system('clear')
 
-    if r == 'v': 
+    if opcao == 'v': 
         return
     else:
-        r = int(r)
+        opcao = int(opcao)
 
-    voosRegistrados[r].reservarPassagem(cliente)
-    menuCliente()
+    reservas.voosRegistrados[opcao].reservarPassagem(cliente)
 
 def menuConsultarPassagem():
-    mostrarVoos(cliente.voosComprados)
-
-    print(cliente.getVoosComprados())
+    mostrarVoos(cliente.getVoosComprados())
 
     input()
     os.system('clear')
 
-    menuCliente()
+    return
 
 def menuCancelarPassagem():
-    mostrarVoos(cliente.voosComprados)
+    voosCancelaveis = cliente.getVoosComprados()
+    mostrarVoos(voosCancelaveis)
 
-    input()
+    opcao = int(input())
     os.system('clear')
-    menuCliente()
+
+    reservas.cancelarPassagem(voosCancelaveis[opcao])
+    return
 
 def mostrarVoos(lista):
     print('----------------------------')
     for num, voo in enumerate(lista):
-        voo.getInformacoes(num)
-        # print(num, voo.numeroDeVoo)
+        voo.mostrarInformacoes(num)
     print('----------------------------')

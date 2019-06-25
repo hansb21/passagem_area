@@ -1,19 +1,13 @@
-import Reservas
+import reservas
 
 class Cliente:
     def __init__(self, nome, cpf):
         self.nome = nome
         self.cpf = cpf
-        self.voosComprados = []
-
-    def removerVoo(self, vooPassagemCancelada):
-        for num, cont in enumerate(self.voosComprados):
-            if cont(1) == vooPassagemCancelada:
-                self.voosComprados.pop(num)
 
     def getVoosComprados(self):
-        voosComprad = []
-        for i in Reservas.passagensCompradas:
+        self.voosComprados = []
+        for i in reservas.passagensCompradas:
             if i['cliente'] == self:
-                voosComprad.append(i['voo'])
-        return voosComprad
+                self.voosComprados.append(i['voo'])
+        return self.voosComprados

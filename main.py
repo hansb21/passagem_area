@@ -3,15 +3,43 @@ import os
 from acessoCliente import *
 from acessoOperador import *
 
+from reservas import *
+from Cliente import *
+
+def loginOperador():
+    user  = input('Usuário: ')
+    senha = input('Senha: ')
+    os.system('clear')
+
+    if user == 'admin' and senha == 'admin':
+        menuOperador()
+
+def loginCliente():
+    nome = input('Nome: ')
+    cpf  = input('CPF: ')
+    os.system('clear')
+
+    cliente = acharCliente(nome, cpf)
+
+    if not cliente:
+        cliente = Cliente(nome, cpf)
+        novoCliente(cliente)
+
+        print('Seja bem vindo ', cliente.nome)
+        input()
+        os.system('clear')
+
+    
+    menuCliente(cliente)
+
 while True:
     a = input('operador, cliente')
     os.system('clear')
 
     if a == '0':
-        menuOperador()
+        loginOperador()
     elif a == '1':
-        menuCliente()
-
+        loginCliente()
 
 
 # while True:
