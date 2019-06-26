@@ -4,6 +4,7 @@ from acessoCliente import *
 from acessoOperador import *
 from colorama import init
 from termcolor import colored
+from interfaces import *
 from reservas import *
 from Cliente import *
 
@@ -30,12 +31,13 @@ def loginCliente():
     
     menuCliente(cliente)
 
+#Começa aqui
+mostrarApresentacao()
+
 while True:
-    print(colored('*'*51, 'green'))
-    for i in ['0 - Operador.', '1 - Cliente.', '2 - Sair.']:
-        print(colored(i, 'green'))
+    mostrarMenuPrincipal()
+    escolha_Login = int(input())
     
-    escolha_Login = int(input(colored('Como você deseja acessar: ', 'green')))
     os.system('clear')
 
     if escolha_Login == 0:
