@@ -3,8 +3,8 @@ import os
 from Voos import *
 
 class Comercial(Voos):
-    def __init__(self, num, origem, destino):
-        Voos.__init__(self, num, origem, destino)
+    def __init__(self, num, origem, destino, horario):
+        Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'comercial'
         self.numeroAssentos = 10
         self.primeiraClasse = int(self.numeroAssentos * 0.2)
@@ -14,6 +14,7 @@ class Comercial(Voos):
         margem = ' ' * 5
         
         print(f'{num}{margem}Número do Voo: {self.numeroDeVoo}')
+        print(f'{margem} Horário: {self.horario}')
         print(f'{margem} Tipo: {self.tipo}')
         print(f'{margem} Origem:  {self.origem}')
         print(f'{margem} Destino: {self.destino}')

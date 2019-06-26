@@ -4,8 +4,8 @@ import reservas
 from Voos import *
 
 class Transporte(Voos):
-    def __init__(self, num, origem, destino, pesoMaximo):
-        Voos.__init__(self, num, origem, destino)
+    def __init__(self, num, origem, destino, pesoMaximo, horario):
+        Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'de carga'
         self.pesoMaximo = pesoMaximo
     
@@ -20,6 +20,7 @@ class Transporte(Voos):
         margem = ' ' * 5
     
         print(f'{num}{margem}Número do Voo: {self.numeroDeVoo}')
+        print(f'{margem} Horário: {self.horario}')
         print(f'{margem} Tipo: {self.tipo}')
         print(f'{margem} Origem:  {self.origem}')
         print(f'{margem} Destino: {self.destino}')

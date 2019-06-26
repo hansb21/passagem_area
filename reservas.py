@@ -2,7 +2,7 @@ from Transporte import *
 from Comercial import *
 from Fretado import *
 
-voosRegistrados = [Fretado(11111, 'A', 'B'), Comercial(22222, 'B', 'C'), Transporte(33333, 'C', 'D', 20000)]
+voosRegistrados = [Fretado(11111, 'A', 'B', '11:30'), Comercial(22222, 'B', 'C', '11:30'), Transporte(33333, 'C', 'D', 20000, '11:30')]
 clientesRegistrados = []
 
 passagensCompradas = []

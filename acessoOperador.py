@@ -38,15 +38,16 @@ def menuCadastrarVoo():
             
     origem = input('Origem: ')
     destino = input('Destino: ')
+    horario = input('Horario: ')
     os.system('clear')
 
     if tipo == 'de carga':
         peso = input('Peso maximo: ')
-        novoVoo = Transporte(num, origem, destino, peso)
+        novoVoo = Transporte(num, origem, destino, peso, horario)
     elif tipo == 'comercial':
-        novoVoo = Comercial(num, origem, destino)
+        novoVoo = Comercial(num, origem, destino, horario)
     elif tipo == 'fretado':
-        novoVoo = Fretado(num, origem, destino)
+        novoVoo = Fretado(num, origem, destino, horario)
         
     reservas.novoVoo(novoVoo)
 
