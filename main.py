@@ -1,83 +1,50 @@
-from Cliente import *
-from Voos import *
-from Reservas import *
-
 import os
 
-reserva = []
+from acessoCliente import *
+from acessoOperador import *
+from colorama import init
+from termcolor import colored
+from reservas import *
+from Cliente import *
 
-cliente = clientesRegistrados[0]
-
-def menuPrincipal():
+def loginOperador():
+    user  = input('Usuário: ')
+    senha = input('Senha: ')
     os.system('clear')
-    while True:
-        print('*' * 51)
-        print('Bem vindo ao sistema de passagens aéreas Sputnik 1.')
-        print('*' * 51)
-        print(' ')
-        print('1 - Cadastrar')
-        print('2 - Consultar')
-        print('3 - Remover')
-        print('4 - Sair')
-        resposta = int(input('Escolha uma opção: '))
 
-        if resposta == 1:
-            menuCadastrar()
-            break
-        elif resposta == 2:
-            menuConsultar()
-            break
-        elif resposta == 3:
-            menuRemover()
-            break
-        elif resposta == 4:
-            print('Obrigado por utilizar nossos serviços.')
-            break
-        else:
-            print('Tente novamente.')
+    if user == 'admin' and senha == 'admin':
+        menuOperador()
 
-# cadastro
-def menuCadastrar():
+def loginCliente():
+    nome = input('Nome: ')
+    
+    cpf  = input('CPF: ')
     os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(voosRegistrados):
-        print(num, voo.numeroDeVoo)
-    print('----------------------------')
 
-    resposta = int(input('qual vôo você quer \n'))
+    cliente = acharCliente(nome, cpf)
 
-    reservarPassagem(resposta)
-    menuPrincipal()
+    if not cliente:
+        cliente = Cliente(nome.title(), cpf)
+        novoCliente(cliente)
+        os.system('clear')
 
-def reservarPassagem(index):
-    vooEscolhido = voosRegistrados[index]
-    vooEscolhido.passageirosAtuais.append(cliente)
-    cliente.voosComprados.append(vooEscolhido)
 
-# consulta
-def menuConsultar():
+    menuCliente(cliente)
+
+while True:
+    print(colored('*'*51, 'green'))
+    for i in ['0 - Operador.', '1 - Cliente.', '2 - Sair.']:
+        print(colored(i, 'green'))
+    
+    escolha_Login = int(input(colored('Como você deseja acessar: ', 'green')))
     os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(cliente.voosComprados):
-        print(num, voo.numeroDeVoo)
-    print('----------------------------')
-    input()
-    menuPrincipal()
 
-# remoção
-def menuRemover():
-    os.system('clear')
-    print('----------------------------')
-    for num, voo in enumerate(cliente.voosComprados):
-        print(num, voo.numeroDeVoo)
-    print('----------------------------')
+    if escolha_Login == 0:
+        loginOperador()
+    elif escolha_Login == 1:
+        loginCliente()
+    elif escolha_Login == 2:
+        break
 
-    resposta = int(input('qual vôo você quer remover\n'))
-    removerPassagem(resposta)
-    menuPrincipal()
 
-def removerPassagem(index):
-    cliente.voosComprados.pop(index)
-    # tirar esse cliente da lista desse vôo
 
-menuPrincipal()
