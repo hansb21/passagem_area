@@ -17,17 +17,18 @@ def loginOperador():
 
 def loginCliente():
     nome = input('Nome: ')
+    
     cpf  = input('CPF: ')
     os.system('clear')
 
     cliente = acharCliente(nome, cpf)
 
     if not cliente:
-        cliente = Cliente(nome, cpf)
+        cliente = Cliente(nome.title(), cpf)
         novoCliente(cliente)
         os.system('clear')
 
-    
+
     menuCliente(cliente)
 
 while True:
