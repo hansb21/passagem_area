@@ -39,14 +39,15 @@ class Comercial(Voos):
         print('Quantas passagens deseja reservar?')
         numPassagens = int(input())
 
-        print('Primeira Classe ou Economica: ')
-        opcao = input()
-        opcap = opcao.lower()
+        print('0 - Primeira Classe')
+        print('1 - Economica')
+        opcao = int(input())
+
         global classe
 
-        if opcao == 'primeiro':
+        if opcao == 0:
             classe = 'primeira'
-        elif opcao == 'economica':
+        elif opcao == 1:
             classe = 'economica'
 
         if numPassagens > self.getAssentosDisponiveis(classe):
