@@ -1,17 +1,15 @@
 import os
-from colorama import init
-from termcolor import colored
+from interfaces import *
 import reservas
 
 def menuCliente(cliento):
     global cliente
     cliente = cliento
+
     while True:
-        print(colored('*'*51, 'green'))
-        print(colored('Seja bem vindo ao sistema de compras de passangens Sputink 1, {}. ', 'red').format(cliente.nome))
-        for i in ['0 - Cadastrar', '1 - Consultar', '2 - Cancelar', '3 - Sair']:
-            print(colored(i, 'red'))
-        opcao = int(input(colored('Como você deseja acessar?', 'red')))
+        mostrarMenuCliente(cliente.nome)
+
+        opcao = int(input())
         os.system('clear')
 
         if opcao == 0:

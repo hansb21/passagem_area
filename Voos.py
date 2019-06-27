@@ -8,11 +8,11 @@ class Voos:
         self.destino = destino
         self.numeroDeVoo = num
         self.horario = horario
+        self.__passageiros = []
 
     def getPassageiros(self):
-        passag = []
         for i in reservas.passagensCompradas:
             if i['voo'] == self:
-                passag.append(i['cliente'])
-        return passag
+                self.__passageiros.append(i['cliente'])
+        return self.__passageiros
 

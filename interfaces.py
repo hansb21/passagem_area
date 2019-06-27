@@ -1,13 +1,13 @@
 import os
 import time
-from acessoCliente import *
-from acessoOperador import *
+
 from colorama import init
 from termcolor import colored
 
+from acessoCliente import *
+from acessoOperador import *
 from reservas import *
 from Cliente import *
-
 
 def mostrarApresentacao():
     os.system('clear')
@@ -17,61 +17,32 @@ def mostrarApresentacao():
     print('*' * 51)
     input()
 
-def loginOperador():
-    user  = input('Usuário: ')
-    senha = input('Senha: ')
+def mostrarMenuPrincipal(n):
     os.system('clear')
 
-    if user == 'admin' and senha == 'admin':
-        menuOperador()
+    corOperador, corCliente = 'green', 'green'
 
-def loginCliente():
-    nome = input('Nome: ')
-    
-    cpf  = input('CPF: ')
-    os.system('clear')
-
-    cliente = acharCliente(nome, cpf)
-
-    if not cliente:
-        cliente = Cliente(nome.title(), cpf)
-        novoCliente(cliente)
-        os.system('clear')
-
-
-    menuCliente(cliente)
-def mostrarMenuPrincipal():
-    os.system('clear')
+    if n == 0:
+        corOperador = 'red'
+    elif n == 1:
+        corCliente  = 'red'
 
     print(colored('**************************', 'green'))
-    print(colored('0 - Operador              ', 'green'))
-    print(colored('1 - Cliente               ', 'green'))
+    print(colored('0 - Operador              ',  corOperador))
+    print(colored('1 - Cliente               ',  corCliente))
     print(colored('2 - Sair                  ', 'green'))
     print()
     print(colored('Como você deseja acessar: ', 'green'), end = '')
-def escolhaMenu(n):
-    if n == 0:
-        os.system('clear')
+    print()
+    time.sleep(1)
 
-        print('*' * 51)
-        print(' ')
-        print(colored('0 - Operador', 'red'))
-        print(colored('1 - Cliente', 'green'))
-        print(colored('2 - Sair','green'))            
-        print(' ')
-        time.sleep(1)
-        loginOperador()
-        
-    elif n == 1:
-        os.system('clear')
-        print('*' * 51)
-        print(' ')
-        print(colored('0 - Operador', 'green'))
-        print(colored('1 - Cliente', 'red'))
-        print(colored('2 - Sair','green'))    
-        print(' ')
-        time.sleep(1)
-        loginCliente()
-        
+def mostrarMenuCliente(nome):
+    os.system('clear')
 
-        
+    print(colored('MENU CLIENTE: {}', 'red').format(nome))
+    print(colored('**************************', 'red'))
+    print(colored('0 - Comprar Passagem      ', 'red'))
+    print(colored('1 - Consultar Compras     ', 'red'))
+    print(colored('2 - Cancelar Compra       ', 'red'))
+    print()
+    print(colored('Como você deseja acessar: ', 'red'), end = '')

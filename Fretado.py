@@ -6,8 +6,9 @@ class Fretado(Voos):
     def __init__(self, num, origem, destino, horario):
         Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'fretado'
-        self.numeroAssentos = 10
+        self.__numeroAssentos = 10
         self.distancia = 2000
+        self.__passagensOcupadas = 0
 
     def mostrarInformacoes(self, num):
         margem = ' ' * 5
@@ -20,11 +21,10 @@ class Fretado(Voos):
         print('')
 
     def getAssentosDisponiveis(self):
-        passagensOcupadas = 0
         for i in reservas.passagensCompradas:
             if i['voo'] == self:
-                passagensOcupadas += i['assentos']
-        return (self.numeroAssentos - passagensOcupadas)
+                self.__passagensOcupadas += i['assentos']
+        return (self.__numeroAssentos - self.__passagensOcupadas)
 
     def reservarPassagem(self, cliente):
         os.system('clear')

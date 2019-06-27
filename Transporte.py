@@ -8,13 +8,15 @@ class Transporte(Voos):
         Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'de carga'
         self.pesoMaximo = pesoMaximo
+        self.__pesoDisponivel = 0
+        self.__pesoAtual = 0
     
     def getPesoDisponivel(self):
-        pesoAtual = 0
         for i in reservas.passagensCompradas:
             if i['voo'] == self:
-                pesoAtual += i['peso']
-        return self.pesoMaximo - pesoAtual
+                pesoAtual += i['peso']               
+
+        return (self.pesoMaximo - self.__pesoAtual)
 
     def mostrarInformacoes(self, num):
         margem = ' ' * 5
