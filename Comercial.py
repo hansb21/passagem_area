@@ -41,18 +41,13 @@ class Comercial(Voos):
         restricao_alimentar = 0
         restricao_alimentardb = []
         for i in range(numPassagens):
-            escolha = input('Portador da passagem nº {} possui alguma restrição alimentar ?'.format(i))
-            if escolha.lower() == ('s' or 'y'):
+            escolha = input('Portador da passagem nº {} possui alguma restrição alimentar ? '.format(i))
+            if escolha.lower() == 's' or 'y':
                 restrição = input('Qual? ')
                 restricao_alimentar += 1
                 restricao_alimentardb.append(restrição)
-
-
-        if numPassagens > self.getAssentosDisponiveis():
-            print('Não há mais assentos disponíveis')
-        else:
-            preco = numPassagens*100 + self.distancia*0.02 
-            preco = preco - ((preco * 0.01) * restricao_alimentar) 
+        
+            
         print('0 - Primeira Classe')
         print('1 - Economica')
         opcao = int(input())
@@ -86,7 +81,7 @@ class Comercial(Voos):
                         break
 
         preco = numPassagens*100
-
+        preco = preco - ((preco * 0.01) * restricao_alimentar) 
         while True:
             print(f'o preço da passagem é {preco}, deseja continuar?')
             opcao = input()
