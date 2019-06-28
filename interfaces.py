@@ -39,10 +39,11 @@ def mostrarMenuPrincipal(n):
 def mostrarMenuCliente(nome):
     os.system('clear')
 
-    print(colored('MENU CLIENTE: {}', 'red').format(nome))
+    print(colored('MENU CLIENTE: {}', 'green').format(nome))
     print(colored('**************************', 'red'))
-    print(colored('0 - Comprar Passagem      ', 'red'))
-    print(colored('1 - Consultar Compras     ', 'red'))
-    print(colored('2 - Cancelar Compra       ', 'red'))
+    print(colored('0 - Comprar Passagem      ', 'green'))
+    print(colored('1 - Consultar Compras     ', 'green'))
+    print(colored('2 - Cancelar Compra       ', 'green'))
+    print(colored('3 - Voltar                ', 'green'))
     print()
-    print(colored('Como você deseja acessar: ', 'red'), end = '')
+    print(colored('Como você deseja acessar: ', 'green'), end = '')

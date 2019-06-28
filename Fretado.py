@@ -33,13 +33,11 @@ class Fretado(Voos):
         print('Quantas passagens deseja reservar?')
         numPassagens = int(input())
         restricao_alimentar = 0
-        restricao_alimentardb = []
         for i in range(numPassagens):
             escolha = input('Portador da passagem nº {} possui alguma restrição alimentar ?'.format(i))
             if escolha.lower() == ('s' or 'y'):
-                restrição = input('Qual? ')
+                input('Qual? ')
                 restricao_alimentar += 1
-                restricao_alimentardb.append(restrição)
 
 
         if numPassagens > self.getAssentosDisponiveis():

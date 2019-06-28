@@ -44,11 +44,11 @@ def menuCadastrarVoo():
     os.system('clear')
 
     if tipo == 0:
-        peso = input('Peso maximo: ')
+        peso = int(input('Peso maximo: '))
         novoVoo = Transporte(num, origem, destino, peso, horario)
-    elif tipo == 'comercial':
+    elif tipo == 1:
         novoVoo = Comercial(num, origem, destino, horario)
-    elif tipo == 'fretado':
+    elif tipo == 2:
         novoVoo = Fretado(num, origem, destino, horario)
         
     reservas.novoVoo(novoVoo)
