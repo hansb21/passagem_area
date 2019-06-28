@@ -3,13 +3,13 @@ import os
 from Voos import *
 
 class Comercial(Voos):
-    def __init__(self, num, origem, destino, horario):
+    def __init__(self, num, origem, destino, horario, precoBase, numeroAssentos):
         Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'comercial'
-        self.numeroAssentos = 10
+        self.numeroAssentos = numeroAssentos
         self.primeiraClasse = int(self.numeroAssentos * 0.2)
         self.classeEconomica = self.numeroAssentos - self.primeiraClasse
-
+        self.__precoBase = precoBase
     def mostrarInformacoes(self, num):
         margem = ' ' * 5
         
@@ -39,13 +39,12 @@ class Comercial(Voos):
         print('Quantas passagens deseja reservar?')
         numPassagens = int(input())
         restricao_alimentar = 0
-        restricao_alimentardb = []
         for i in range(numPassagens):
             escolha = input('Portador da passagem nº {} possui alguma restrição alimentar ? '.format(i))
-            if escolha.lower() == 's' or 'y':
+            if escolha.lower() in ['s', 'y']:
                 restrição = input('Qual? ')
                 restricao_alimentar += 1
-                restricao_alimentardb.append(restrição)
+                
         
             
         print('0 - Primeira Classe')
@@ -80,8 +79,11 @@ class Comercial(Voos):
                     elif opcao == 's':
                         break
 
-        preco = numPassagens*100
-        preco = preco - ((preco * 0.01) * restricao_alimentar) 
+        preco = int(numPassagens * self.__precoBase)
+        
+        preco = preco - ((preco * 0.01) * restricao_alimentar)
+        if self.numeroAssentos >= 100:
+            preco = preco - (preco * 0.15)
         while True:
             print(f'o preço da passagem é {preco}, deseja continuar?')
             opcao = input()

@@ -3,11 +3,11 @@ import os
 from Voos import *
 
 class Fretado(Voos):
-    def __init__(self, num, origem, destino, horario):
+    def __init__(self, num, origem, destino, horario, numeroAssentos, distancia):
         Voos.__init__(self, num, origem, destino, horario)
         self.tipo = 'fretado'
-        self.__numeroAssentos = 10
-        self.distancia = 2000
+        self.__numeroAssentos = numeroAssentos
+        self.distancia = distancia
         self.__passagensOcupadas = 0
 
     def mostrarInformacoes(self, num):
@@ -45,9 +45,11 @@ class Fretado(Voos):
         if numPassagens > self.getAssentosDisponiveis():
             print('Não há mais assentos disponíveis')
         else:
-            preco = numPassagens*100 + self.distancia*0.02 
+            preco = numPassagens*100 + self.distancia*30 
             preco = preco - ((preco * 0.01) * restricao_alimentar) 
-
+            if self.__numeroAssentos >= 100:
+                preco = preco - (preco * 0.15)
+            
             while True:
                 print(f'o preço da passagem é {preco}, deseja continuar?')
                 opcao = input()

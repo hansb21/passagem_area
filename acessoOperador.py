@@ -47,9 +47,13 @@ def menuCadastrarVoo():
         peso = input('Peso maximo: ')
         novoVoo = Transporte(num, origem, destino, peso, horario)
     elif tipo == 1:
-        novoVoo = Comercial(num, origem, destino, horario)
+        precoBase = int(input('Entre o preço base do vôo: '))
+        numeroAssentos = int(input('Entre o número de assentos: '))
+        novoVoo = Comercial(num, origem, destino, horario, precoBase, numeroAssentos)
     elif tipo == 2:
-        novoVoo = Fretado(num, origem, destino, horario)
+        numeroAssentos = int(input('Número de assentos: '))
+        distancia = int(input('Distância: '))
+        novoVoo = Fretado(num, origem, destino, horario, numeroAssentos, distancia)
         
     reservas.novoVoo(novoVoo)
 
