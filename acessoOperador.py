@@ -24,8 +24,10 @@ def menuOperador():
         
 def menuCadastrarVoo():
     while True:
-        tipo = input('Tipo do vôo: ')
-        if tipo.lower() not in ['de carga', 'comercial', 'fretado']:
+        for i in ['0 - De carga', '1 - Comercial', '2 - fretado']:
+            print(i)
+        tipo = int(input('Tipo do vôo: '))
+        if tipo not in range(0, 3):
             print('Tipo de vôo invalido. ')
         else:
             break
@@ -41,7 +43,7 @@ def menuCadastrarVoo():
     horario = input('Horario: ')
     os.system('clear')
 
-    if tipo == 'de carga':
+    if tipo == 0:
         peso = input('Peso maximo: ')
         novoVoo = Transporte(num, origem, destino, peso, horario)
     elif tipo == 'comercial':
