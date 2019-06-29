@@ -1,5 +1,6 @@
 import os
 import time
+import getpass
 
 from colorama import init
 from termcolor import colored
@@ -14,7 +15,7 @@ def loginOperador():
     os.system('clear')
 
     user  = input(colored('Usuário: ', 'green'))
-    senha = input(colored('Senha:   ', 'green'))
+    senha = getpass.getpass(colored('Senha:   ', 'green'))
     os.system('clear')
 
     if user == 'admin' and senha == 'admin':
