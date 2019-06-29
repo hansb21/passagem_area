@@ -74,8 +74,7 @@ def menuCancelarVoo():
 
     for voo in reservas.voosRegistrados:
         if voo.numeroDeVoo == vooEscolhido:
-            reservas.cancelarPassagem(voo)
-    # reservas.cancelarVoo()
+            reservas.cancelarVoo(voo)
 
 
 # Úteis
