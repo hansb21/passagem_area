@@ -88,7 +88,7 @@ class Comercial(Voos):
             preco -= preco * 0.25
 
         while True:
-            print(f'o preço da passagem é {preco}, deseja continuar?')
+            print(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?')
             opcao = input()
             os.system('clear')
 
@@ -98,4 +98,4 @@ class Comercial(Voos):
                 return
             
         reservas.novaPassagem({'voo': self, 'cliente': cliente, 'assentos': numPassagens, 'classe':classe})
-        
+        input('Vôo cadastrado com sucesso!')

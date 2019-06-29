@@ -12,9 +12,10 @@ class Transporte(Voos):
         self.__pesoAtual = 0
     
     def getPesoDisponivel(self):
+        self.__pesoAtual = 0
         for i in reservas.passagensCompradas:
             if i['voo'] == self:
-                pesoAtual += i['peso']               
+                self.__pesoAtual += i['peso']               
 
         return (self.pesoMaximo - self.__pesoAtual)
 
@@ -25,7 +26,7 @@ class Transporte(Voos):
         print(f'{margem} Número do Voo:.......{self.numeroDeVoo}')
         print(f'{margem} Tipo:................{self.tipo}       ')
         print(f'{margem} Horário:.............{self.horario[0]}:{self.horario[1]}')
-        print(f'{margem} Peso Máximo:.........{self.pesoMaximo} Ton')
+        print(f'{margem} Peso Máximo:.........{self.pesoMaximo} Kg')
         print(f'{margem} Origem:..............{self.origem}     ')
         print(f'{margem} Destino:.............{self.destino}    ')
         print()
@@ -44,7 +45,7 @@ class Transporte(Voos):
         preco = pesoCarga * reservas.precoTransporte / self.pesoMaximo
 
         while True:
-            print(f'o preço da passagem é {preco}, deseja continuar?')
+            print(f'O preço da passagem é R$ {preco:.2f}, deseja continuar?')
             print('s/n')
             opcao = input().lower()
             os.system('clear')
@@ -55,3 +56,4 @@ class Transporte(Voos):
                 return
                 
         reservas.novaPassagem({'voo': self, 'cliente': cliente, 'peso': pesoCarga})
+        input('Vôo cadastrado com sucesso!')

@@ -24,6 +24,7 @@ class Fretado(Voos):
         print()
 
     def getAssentosDisponiveis(self):
+        self.__passagensOcupadas = 0
         for i in reservas.passagensCompradas:
             if i['voo'] == self:
                 self.__passagensOcupadas += i['assentos']
@@ -40,12 +41,12 @@ class Fretado(Voos):
             input('Não há mais assentos disponíveis')
             return
 
-        preco = (numPassagens * reservas.precoFretado) + (self.distancia * reservas.precoPorKm)
+        preco = (numPassagens * reservas.precoFretado) + (self.distancia * reservas.precoPorKm / self.numeroAssentos)
         
         while True:
             os.system('clear')
 
-            print(f'o preço da passagem é {preco}, deseja continuar?')
+            print(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?')
             print('s/n')
             opcao = input().lower()
 
@@ -55,3 +56,4 @@ class Fretado(Voos):
                 return
 
         reservas.novaPassagem({'voo': self, 'cliente': cliente, 'assentos': numPassagens})
+        input('Vôo cadastrado com sucesso!')
