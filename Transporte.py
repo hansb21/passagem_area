@@ -46,7 +46,7 @@ class Transporte(Voos):
 
         while True:
             print(f'O preço da passagem é R$ {preco:.2f}, deseja continuar?')
-            print('s/n')
+            print('S/N')
             opcao = input().lower()
             os.system('clear')
 

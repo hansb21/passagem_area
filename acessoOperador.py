@@ -41,8 +41,8 @@ def menuCadastrarVoo():
         novoVoo.pesoMaximo = int(input('Peso maximo: '))
 
     elif tipo == 1:
-        novoVoo = Comercial(numeroVoo, origem, destino, horario)
-        novoVoo.numeroAssentos = int(input('Número de assentos: '))
+        assentos = int(input('Número de assentos: '))
+        novoVoo = Comercial(numeroVoo, origem, destino, horario, assentos)
 
     elif tipo == 2:
         novoVoo = Fretado(numeroVoo, origem, destino, horario)
@@ -74,10 +74,8 @@ def menuCancelarVoo():
 
     for voo in reservas.voosRegistrados:
         if voo.numeroDeVoo == vooEscolhido:
-            reservas.cancelarVoo(voo)
-            return
-    else:
-        input('Não foi possível cancelar esse Vôo')
+            reservas.cancelarPassagem(voo)
+    # reservas.cancelarVoo()
 
 
 # Úteis
@@ -114,4 +112,10 @@ def setHorario():
         tempo = input('Horario (HH:MM):')
         if len(tempo) == 5 and tempo[2] == ':':
             time = tempo.split(':')
-            return time
+            time[0] = int(time[0])
+            time[1] = int(time[1])
+            
+            if 0 <= time[0] < 24  and 0 <= time[1] < 60:
+                return time
+        print('Insira um horario válido')
+

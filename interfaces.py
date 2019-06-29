@@ -84,8 +84,8 @@ def mostrarVoos(lista):
     print('*'*55)
 
 def mostrarRestricoesAlimentares():
-    print(colored('0 - Sem glúten       ', 'green'))
-    print(colored('1 - Vegetariana      ', 'green'))
-    print(colored('2 - Cardápio Infantil', 'green'))
+    print(colored('- Sem glúten       ', 'green'))
+    print(colored('- Vegetariana      ', 'green'))
+    print(colored('- Cardápio Infantil', 'green'))
     print()
     print(colored('Quantas das restrições acima você possui?: ', 'green'), end = '')

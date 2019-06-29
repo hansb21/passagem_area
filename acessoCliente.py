@@ -45,6 +45,5 @@ def menuCancelarPassagem():
     for voo in voosCancelaveis:
         if voo.numeroDeVoo == vooEscolhido:
             reservas.cancelarPassagem(voo)
-            return
     else:
         input('Não foi possível cancelar essa passagem')

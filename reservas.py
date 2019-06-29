@@ -1,4 +1,6 @@
-voosRegistrados = []
+from Fretado import *
+
+voosRegistrados = [Fretado('11111', 'a', 'b', [10,10])]
 clientesRegistrados = []
 passagensCompradas = []
 
@@ -21,13 +23,12 @@ def novoVoo(voo):
     voosRegistrados.append(voo)
 
 def cancelarVoo(voo):
-    cancelarPassagem(voo)    
     voosRegistrados.pop(voosRegistrados.index(voo))
 
 def novaPassagem(passagem):
     passagensCompradas.append(passagem)
 
 def cancelarPassagem(voo):
-    for i in passagensCompradas:
-        if i['voo'] == voo:
-            passagensCompradas.pop(passagensCompradas.index(i))
+    for num, passagem in enumerate(passagensCompradas):
+        if passagem['voo'] == voo:
+            passagensCompradas.pop(num)
