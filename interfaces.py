@@ -61,7 +61,7 @@ def mostrarMenuOperador():
     print(colored('2 - Cancelar Vôos         ', 'green'))
     print(colored('3 - Voltar                ', 'green'))
     print()
-    print(colored('Como você deseja acessar: ', 'green'), end = '')
+    print(colored('Como você deseja acessar?: ', 'green'), end = '')
 
 def mostrarTiposVoo():
     os.system('clear')

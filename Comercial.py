@@ -58,8 +58,6 @@ class Comercial(Voos):
 
         # deus que me perdoe por essa gambiarra
         if numPassagens > self.getAssentosDisponiveis(classe):
-            print('Desculpe, não há mais assentos disponíveis')
-
             if classe == 'primeira':
                 classe = 'economica'
             else:
@@ -77,6 +75,7 @@ class Comercial(Voos):
                         return
                     elif opcao == 's':
                         break 
+            input('Desculpe, não há mais assentos disponíveis')
 
         preco = numPassagens * reservas.precoComercial
         preco += (preco * 0.05) * restricaoAlimentar

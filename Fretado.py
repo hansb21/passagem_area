@@ -37,7 +37,7 @@ class Fretado(Voos):
         numPassagens = int(input())
 
         if numPassagens > self.getAssentosDisponiveis():
-            print('Não há mais assentos disponíveis')
+            input('Não há mais assentos disponíveis')
             return
 
         preco = (numPassagens * reservas.precoFretado) + (self.distancia * reservas.precoPorKm)
