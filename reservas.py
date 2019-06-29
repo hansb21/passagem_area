@@ -1,11 +1,11 @@
-from Transporte import *
-from Comercial import *
-from Fretado import *
-
-voosRegistrados = [Fretado(11111, 'A', 'B', '11:30'), Comercial(22222, 'B', 'C', '11:30'), Transporte(33333, 'C', 'D', 20000, '11:30')]
+voosRegistrados = []
 clientesRegistrados = []
-
 passagensCompradas = []
+
+precoComercial = 300
+precoTransporte = 1000
+precoFretado = 100
+precoPorKm = 10
 
 def acharCliente(nome, cpf):
     for i in clientesRegistrados:

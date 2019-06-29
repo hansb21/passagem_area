@@ -23,14 +23,14 @@ def loginOperador():
 def loginCliente():
     os.system('clear')
 
-    nome = input(colored('Nome: ', 'green'))
+    nome = input(colored('Nome: ', 'green')).title()
     cpf  = input(colored('CPF:  ', 'green'))
     os.system('clear')
 
     cliente = acharCliente(nome, cpf)
 
     if not cliente:
-        cliente = Cliente(nome.title(), cpf)
+        cliente = Cliente(nome, cpf)
         novoCliente(cliente)
         os.system('clear')
 
@@ -49,4 +49,5 @@ while True:
     elif escolhaLogin == 1:
         loginCliente()
     elif escolhaLogin == 2:
+        os.system('clear')
         break

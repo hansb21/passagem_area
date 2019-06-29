@@ -4,10 +4,10 @@ import reservas
 from Voos import *
 
 class Transporte(Voos):
-    def __init__(self, num, origem, destino, pesoMaximo, horario):
+    def __init__(self, num, origem, destino, horario):
         Voos.__init__(self, num, origem, destino, horario)
-        self.tipo = 'de carga'
-        self.pesoMaximo = pesoMaximo
+        self.tipo = 'Cargueiro'
+        self.pesoMaximo = 1000
         self.__pesoDisponivel = 0
         self.__pesoAtual = 0
     
@@ -18,33 +18,35 @@ class Transporte(Voos):
 
         return (self.pesoMaximo - self.__pesoAtual)
 
-    def mostrarInformacoes(self, num):
+    def mostrarInformacoes(self):
         margem = ' ' * 5
     
-        print(f'{num}{margem}Número do Voo: {self.numeroDeVoo}')
-        print(f'{margem} Horário: {self.horario}')
-        print(f'{margem} Tipo: {self.tipo}')
-        print(f'{margem} Origem:  {self.origem}')
-        print(f'{margem} Destino: {self.destino}')
-        print('')
-
+        print()
+        print(f'{margem} Número do Voo:.......{self.numeroDeVoo}')
+        print(f'{margem} Tipo:................{self.tipo}       ')
+        print(f'{margem} Horário:.............{self.horario[0]}:{self.horario[1]}')
+        print(f'{margem} Peso Máximo:.........{self.numeroDeVoo} Ton')
+        print(f'{margem} Origem:..............{self.origem}     ')
+        print(f'{margem} Destino:.............{self.destino}    ')
+        print()
+        
     def reservarPassagem(self, cliente):
         os.system('clear')
 
-        print(f'Tipo: Avião {self.tipo}')
+        print(f'Tipo: Avião {self.tipo} \n')
         print('quanto pesa sua carga?')
         pesoCarga = int(input())
 
         if pesoCarga > self.getPesoDisponivel():
-            print('Não há espaço disponível para sua carga')
-            input()
+            input('Não há espaço disponível para sua carga')
             return
 
-        preco = pesoCarga*100 / self.pesoMaximo
+        preco = pesoCarga * reservas.precoTransporte / self.pesoMaximo
 
         while True:
             print(f'o preço da passagem é {preco}, deseja continuar?')
-            opcao = input()
+            print('s/n')
+            opcao = input().lower()
             os.system('clear')
 
             if opcao == 's':

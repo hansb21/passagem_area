@@ -11,17 +11,16 @@
 # Comercial
 
 Preço = Nº de passagens * Preço Base
-Preço = Preço - 1% de desconto por cada passagem com restrição alimentar
+Preço = Preço + 1% de desconto por cada passagem com restrição alimentar
 Preço = Preço - 25% de desconto por cada passagem se o vôo for no periodo das 22h as 5h
 Se houver => 100 assentos -> 15% de desconto do preço total
 
 # Fretados
 
 Preço = (30 (Preço por KM) * distância) + Número de assentos * 100
-Preço = Preço - 1% de desconto por cada passagem com restrição alimentar
 Preço = Preço - 25% de desconto por cada passagem se o vôo for no periodo das 22h as 5h
 Se houver => 100 assentos -> 15% de desconto do preço total
 
 #De carga
 
-Preço = Peso da carga * 100 / Peso máximo
+Preço = Peso da carga * Preço Base / Peso máximo

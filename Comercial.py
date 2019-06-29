@@ -1,24 +1,27 @@
 import os
 
 from Voos import *
+from interfaces import *
 
 class Comercial(Voos):
-    def __init__(self, num, origem, destino, horario, precoBase, numeroAssentos):
+    def __init__(self, num, origem, destino, horario):
         Voos.__init__(self, num, origem, destino, horario)
-        self.tipo = 'comercial'
-        self.numeroAssentos = numeroAssentos
+        self.tipo = 'Comercial'
+        self.numeroAssentos = 100
         self.primeiraClasse = int(self.numeroAssentos * 0.2)
         self.classeEconomica = self.numeroAssentos - self.primeiraClasse
-        self.__precoBase = precoBase
-    def mostrarInformacoes(self, num):
+
+    def mostrarInformacoes(self):
         margem = ' ' * 5
-        
-        print(f'{num}{margem}Número do Voo: {self.numeroDeVoo}')
-        print(f'{margem} Horário: {self.horario}')
-        print(f'{margem} Tipo: {self.tipo}')
-        print(f'{margem} Origem:  {self.origem}')
-        print(f'{margem} Destino: {self.destino}')
-        print('')
+
+        print()
+        print(f'{margem} Número do Voo:.......{self.numeroDeVoo}')
+        print(f'{margem} Tipo:................{self.tipo}       ')
+        print(f'{margem} Horário:.............{self.horario[0]}:{self.horario[1]}')
+        print(f'{margem} Número de assentos:..{self.numeroDeVoo}')
+        print(f'{margem} Origem:..............{self.origem}     ')
+        print(f'{margem} Destino:.............{self.destino}    ')
+        print()
 
     def getAssentosDisponiveis(self, classe):
         passagensOcupadas = 0
@@ -38,15 +41,10 @@ class Comercial(Voos):
 
         print('Quantas passagens deseja reservar?')
         numPassagens = int(input())
-        restricao_alimentar = 0
-        for i in range(numPassagens):
-            escolha = input('Portador da passagem nº {} possui alguma restrição alimentar ? '.format(i))
-            if escolha.lower() in ['s', 'y']:
-                restrição = input('Qual? ')
-                restricao_alimentar += 1
-                
-        
-            
+
+        mostrarRestricoesAlimentares()
+        restricaoAlimentar = int(input())
+
         print('0 - Primeira Classe')
         print('1 - Economica')
         opcao = int(input())
@@ -58,8 +56,9 @@ class Comercial(Voos):
         elif opcao == 1:
             classe = 'economica'
 
+        # deus que me perdoe por essa gambiarra
         if numPassagens > self.getAssentosDisponiveis(classe):
-            print('Não há mais assentos disponíveis')
+            print('Desculpe, não há mais assentos disponíveis')
 
             if classe == 'primeira':
                 classe = 'economica'
@@ -77,13 +76,18 @@ class Comercial(Voos):
                     if opcao == 'n':
                         return
                     elif opcao == 's':
-                        break
+                        break 
 
-        preco = int(numPassagens * self.__precoBase)
+        preco = numPassagens * reservas.precoComercial
+        preco += (preco * 0.05) * restricaoAlimentar
         
-        preco = preco - ((preco * 0.01) * restricao_alimentar)
+        if classe == 'primeira':
+            preco += 100
         if self.numeroAssentos >= 100:
-            preco = preco - (preco * 0.15)
+            preco -= preco * 0.15
+        if self.horario[0] < 5 or self.horario[0] > 22:
+            preco -= preco * 0.25
+
         while True:
             print(f'o preço da passagem é {preco}, deseja continuar?')
             opcao = input()

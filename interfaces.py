@@ -3,18 +3,21 @@ import time
 
 from colorama import init
 from termcolor import colored
-
-from acessoCliente import *
-from acessoOperador import *
 from reservas import *
-from Cliente import *
 
 def mostrarApresentacao():
     os.system('clear')
+    
+    print(colored('       BEM VINDO AO SISTEMA DE PASSAGENS AÉREAS        ', 'red'))    
 
-    print('*' * 51)
-    print(colored('Bem vindo ao sistema de passagens aéreas Sputnik.', 'blue'))
-    print('*' * 51)
+    print('*' * 55)
+    print(colored('****** ****** **  ** ****** **   **  ** ******  **   **', 'blue'))
+    print(colored('**     **  ** **  **   **   ** * **  ** **      ** **  ', 'blue'))
+    print(colored('****** ****** **  **   **   **  ***  ** **      ****   ', 'blue'))
+    print(colored('    ** **     **  **   **   **   **  ** **      ** **  ', 'blue'))
+    print(colored('****** **     ******   **   **   **  ** ******  **   **', 'blue'))
+    print('*' * 55)
+
     input()
 
 def mostrarMenuPrincipal(n):
@@ -34,16 +37,55 @@ def mostrarMenuPrincipal(n):
     print()
     print(colored('Como você deseja acessar: ', 'green'), end = '')
     print()
-    time.sleep(1)
+    time.sleep(0.5)
 
 def mostrarMenuCliente(nome):
     os.system('clear')
 
-    print(colored('MENU CLIENTE: {}', 'green').format(nome))
-    print(colored('**************************', 'red'))
+    print(colored('MENU CLIENTE: {}          ', 'green').format(nome))
+    print(colored('**************************', 'red'  ))
     print(colored('0 - Comprar Passagem      ', 'green'))
     print(colored('1 - Consultar Compras     ', 'green'))
     print(colored('2 - Cancelar Compra       ', 'green'))
     print(colored('3 - Voltar                ', 'green'))
     print()
     print(colored('Como você deseja acessar: ', 'green'), end = '')
+
+def mostrarMenuOperador():
+    os.system('clear')
+
+    print(colored('MENU OPERADOR:            ', 'green'))
+    print(colored('**************************', 'red'  ))
+    print(colored('0 - Cadastrar Vôo         ', 'green'))
+    print(colored('1 - Consultar Vôos        ', 'green'))
+    print(colored('2 - Cancelar Vôos         ', 'green'))
+    print(colored('3 - Voltar                ', 'green'))
+    print()
+    print(colored('Como você deseja acessar: ', 'green'), end = '')
+
+def mostrarTiposVoo():
+    os.system('clear')
+
+    print(colored('0 - Transporte', 'green'))
+    print(colored('1 - Comercial ', 'green'))
+    print(colored('2 - Fretado   ', 'green'))
+    print()
+    print(colored('Escolha o tipo de vôo: ', 'green'), end = '')
+
+def mostrarVoos(lista):
+    os.system('clear')
+    
+    print('*'*55)
+    if lista == []:
+        print('Não há voos para mostrar =(')
+
+    for voo in lista:
+        voo.mostrarInformacoes()
+    print('*'*55)
+
+def mostrarRestricoesAlimentares():
+    print(colored('0 - Sem glúten       ', 'green'))
+    print(colored('1 - Vegetariana      ', 'green'))
+    print(colored('2 - Cardápio Infantil', 'green'))
+    print()
+    print(colored('Quantas das restrições acima você possui?: ', 'green'), end = '')
