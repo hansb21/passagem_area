@@ -66,11 +66,11 @@ def mostrarMenuOperador():
 def mostrarTiposVoo():
     os.system('clear')
 
-    print(colored('0 - Transporte', 'green'))
-    print(colored('1 - Comercial ', 'green'))
-    print(colored('2 - Fretado   ', 'green'))
+    print('0 - Transporte')
+    print('1 - Comercial ')
+    print('2 - Fretado   ')
     print()
-    print(colored('Escolha o tipo de vôo: ', 'green'), end = '')
+    print('Escolha o tipo de vôo: ', end = '')
 
 def mostrarVoos(lista):
     os.system('clear')

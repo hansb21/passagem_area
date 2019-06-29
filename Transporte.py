@@ -25,7 +25,7 @@ class Transporte(Voos):
         print(f'{margem} Número do Voo:.......{self.numeroDeVoo}')
         print(f'{margem} Tipo:................{self.tipo}       ')
         print(f'{margem} Horário:.............{self.horario[0]}:{self.horario[1]}')
-        print(f'{margem} Peso Máximo:.........{self.numeroDeVoo} Ton')
+        print(f'{margem} Peso Máximo:.........{self.pesoMaximo} Ton')
         print(f'{margem} Origem:..............{self.origem}     ')
         print(f'{margem} Destino:.............{self.destino}    ')
         print()

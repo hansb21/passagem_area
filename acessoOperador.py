@@ -10,19 +10,23 @@ from Transporte import *
 def menuOperador():
     while True:
         mostrarMenuOperador()
-        opcao = int(input())
+        opcao = input()
         
-        if opcao == 0:
+        if opcao == '0':
             menuCadastrarVoo()
-        elif opcao == 1:
+        elif opcao == '1':
             menuConsultarVoo()
-        elif opcao == 2:
+        elif opcao == '2':
             menuCancelarVoo()
-        elif opcao == 3:
+        elif opcao == '3':
             break
         
 def menuCadastrarVoo():
     os.system('clear')
+
+    if len(reservas.voosRegistrados) >= 3:
+        input('Já existem 3 vôos cadastrados.')
+        return
 
     numeroVoo = setNumeroVoo()
     horario = setHorario()

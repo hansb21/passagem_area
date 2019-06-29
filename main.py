@@ -19,6 +19,8 @@ def loginOperador():
 
     if user == 'admin' and senha == 'admin':
         menuOperador()
+    else:
+        input('Senha Inválida!')
 
 def loginCliente():
     os.system('clear')

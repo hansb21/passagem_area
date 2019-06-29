@@ -18,7 +18,7 @@ class Comercial(Voos):
         print(f'{margem} Número do Voo:.......{self.numeroDeVoo}')
         print(f'{margem} Tipo:................{self.tipo}       ')
         print(f'{margem} Horário:.............{self.horario[0]}:{self.horario[1]}')
-        print(f'{margem} Número de assentos:..{self.numeroDeVoo}')
+        print(f'{margem} Número de assentos:..{self.numeroAssentos}')
         print(f'{margem} Origem:..............{self.origem}     ')
         print(f'{margem} Destino:.............{self.destino}    ')
         print()
