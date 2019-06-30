@@ -1,4 +1,6 @@
 import os
+from colorama import init
+from termcolor import colored
 
 import reservas
 from Voos import *
@@ -34,19 +36,23 @@ class Transporte(Voos):
     def reservarPassagem(self, cliente):
         os.system('clear')
 
-        print(f'Tipo: Avião {self.tipo} \n')
-        print('quanto pesa sua carga?')
-        pesoCarga = int(input())
-
+        print(colored(f'Tipo: Avião {self.tipo} \n', 'green'))
+        print(colored('quanto pesa sua carga?', 'green'))
+        while True:
+            pesoCarga = int(input())
+            if pesoCarga < 0:
+                print(colored('Carga invalida.', 'red'))
+            else:
+                break
         if pesoCarga > self.getPesoDisponivel():
-            input('Não há espaço disponível para sua carga')
+            input(colored('Não há espaço disponível para sua carga', 'red'))
             return
 
         preco = pesoCarga * reservas.precoTransporte / self.pesoMaximo
 
         while True:
-            print(f'O preço da passagem é R$ {preco:.2f}, deseja continuar?')
-            print('S/N')
+            print(colored(f'O preço da passagem é R$ {preco:.2f}, deseja continuar?', 'green'))
+            print(colored('S/N', 'green'))
             opcao = input().lower()
             os.system('clear')
 
@@ -56,4 +62,4 @@ class Transporte(Voos):
                 return
                 
         reservas.novaPassagem({'voo': self, 'cliente': cliente, 'peso': pesoCarga})
-        input('Vôo cadastrado com sucesso!')
+        input(colored('Vôo cadastrado com sucesso!', 'green'))

@@ -14,14 +14,14 @@ from Cliente import *
 def loginOperador():
     os.system('clear')
 
-    user  = input(colored('Usuário: ', 'green'))
-    senha = getpass.getpass(colored('Senha:   ', 'green'))
+    user  = input(colored('Usuário: ', 'blue'))
+    senha = getpass.getpass(colored('Senha: ', 'blue'))
     os.system('clear')
 
     if user == 'admin' and senha == 'admin':
         menuOperador()
     else:
-        input('Senha Inválida!')
+        input(colored('Senha Inválida!','blue'))
 
 def loginCliente():
     os.system('clear')

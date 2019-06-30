@@ -1,4 +1,6 @@
 import os
+from colorama import init
+from termcolor import colored
 
 import reservas
 from interfaces import *
@@ -25,56 +27,90 @@ def menuCadastrarVoo():
     os.system('clear')
 
     if len(reservas.voosRegistrados) >= 3:
-        input('Já existem 3 vôos cadastrados.')
+        input(colored('Já existem 3 vôos cadastrados.', 'red'))
         return
 
     numeroVoo = setNumeroVoo()
     horario = setHorario()
-    origem  = input('Origem:  ')
-    destino = input('Destino: ')
+
+    while True:
+        origem  = input(colored('Origem:  ', 'blue'))
+        if origem == '':
+            print(colored('Por favor coloque uma origem valida.', 'red'))
+        else:
+            break
+    while True:
+        destino = input(colored('Destino: ', 'blue'))
+        if destino == '':
+            print(colored('Por favor entre um destino valido.', 'red'))
+        else:
+            break
     os.system('clear')
 
     tipo = setTipoVoo()
 
     if tipo == 0:
         novoVoo = Transporte(numeroVoo, origem, destino, horario)
-        novoVoo.pesoMaximo = int(input('Peso maximo: '))
+        novoVoo.pesoMaximo = int(input(colored('Peso maximo: ', 'blue')))
 
     elif tipo == 1:
-        assentos = int(input('Número de assentos: '))
+        while True:
+            assentos = int(input('Número de assentos: '))
+            if assentos <= 0:
+                print('Número invalido, tente novamente')
+            else:
+                break
         novoVoo = Comercial(numeroVoo, origem, destino, horario, assentos)
 
     elif tipo == 2:
         novoVoo = Fretado(numeroVoo, origem, destino, horario)
-        novoVoo.numeroAssentos = int(input('Número de assentos: '))
-        novoVoo.distancia = int(input('Distância: '))
+        while True:
+            assentos = int(input('Número de assentos: '))
+            if assentos <= 0:
+                print('Número invalido, tente novamente')
+            else:
+                break
+        novoVoo.numeroAssentos = assentos
+        while True:
+            distancia = int(input('Distância: '))
+            if distancia <= 0:
+                print('Distância invalido, tente novamente')
+            else:
+                break
+        novoVoo.distancia = distancia
 
     reservas.novoVoo(novoVoo)
 
 def menuConsultarVoo():
     mostrarVoos(reservas.voosRegistrados)
-    vooEscolhido = input('Digite o número do vôo para verificar passageiros: ')
+    vooEscolhido = input(colored('Digite o número do vôo para verificar passageiros: ', 'blue'))
 
     for voo in reservas.voosRegistrados:
         if voo.numeroDeVoo == vooEscolhido:
             if voo.getPassageiros() == []:
-                input('Não há passageiros neste vôo')
+                input(colored('Não há passageiros neste vôo.', 'red'))
                 return
 
             for i in voo.getPassageiros():
-                print(f'Nome:.......{i.nome}')
-                print(f'CPF:........{i.cpf}')
-                print()
+                print(colored(f'Nome:.......{i.nome}', 'blue'))
+                print(colored(f'CPF:........{i.cpf}', 'blue'))
+                print('')
             input()
             return
     
 def menuCancelarVoo():
     mostrarVoos(reservas.voosRegistrados)
-    vooEscolhido = input('Digite o número do vôo que deseja cancelar: ')
-
+    while True:
+        vooEscolhido = input(colored('Digite o número do vôo que deseja cancelar: ', 'blue'))
+        if len(vooEscolhido) != 5:
+            print('Número invalido. ')
+        else:
+            break
     for voo in reservas.voosRegistrados:
         if voo.numeroDeVoo == vooEscolhido:
             reservas.cancelarPassagem(voo)
+        else:
+            print(colored('Esse vôo não existe.', 'red'))
     # reservas.cancelarVoo()
 
 
@@ -91,9 +127,9 @@ def setTipoVoo():
 def setNumeroVoo():
     while True:
         numValido = True
-        num = input('Número do vôo: ')
+        num = input(colored('Número do vôo: ', 'blue'))
         if len(num) != 5:
-            print('O número precisa ter 5 dígitos')
+            print(colored('O número precisa ter 5 dígitos.', 'red'))
         else:
             for voo in reservas.voosRegistrados:
                 if voo.numeroDeVoo == num:
@@ -101,7 +137,7 @@ def setNumeroVoo():
             if numValido:
                 break
             else:
-                print('Esse número já existe')
+                print(colored('Um vôo com esse número já existe.', 'red'))
 
     os.system('clear')
     return num
@@ -109,7 +145,7 @@ def setNumeroVoo():
 
 def setHorario():
     while True:
-        tempo = input('Horario (HH:MM):')
+        tempo = input(colored('Horario (HH:MM): ', 'blue'))
         if len(tempo) == 5 and tempo[2] == ':':
             time = tempo.split(':')
             time[0] = int(time[0])
@@ -117,5 +153,5 @@ def setHorario():
             
             if 0 <= time[0] < 24  and 0 <= time[1] < 60:
                 return time
-        print('Insira um horario válido')
+        print(colored('Insira um horário válido. ', 'red'))
 
