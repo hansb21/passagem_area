@@ -37,13 +37,12 @@ class Transporte(Voos):
         os.system('clear')
 
         print(colored(f'Tipo: Avião {self.tipo} \n', 'green'))
-        print(colored('quanto pesa sua carga?', 'green'))
         while True:
-            pesoCarga = int(input())
-            if pesoCarga < 0:
-                print(colored('Carga invalida.', 'red'))
-            else:
+            pesoCarga = int(input(colored('quanto pesa sua carga?', 'green')))
+            if pesoCarga > 0:
                 break
+            else:
+                print(colored('Carga invalida.', 'red'))
         if pesoCarga > self.getPesoDisponivel():
             input(colored('Não há espaço disponível para sua carga', 'red'))
             return

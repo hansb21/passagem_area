@@ -51,7 +51,13 @@ def menuCadastrarVoo():
 
     if tipo == 0:
         novoVoo = Transporte(numeroVoo, origem, destino, horario)
-        novoVoo.pesoMaximo = int(input(colored('Peso maximo: ', 'blue')))
+        while True:
+            pesomaximo = int(input(colored('Peso maximo: ', 'blue')))
+            if pesomaximo < 0:
+                print(colored('Peso invalido, tente novamente.', 'red'))
+            else:
+                break
+        novoVoo.pesoMaximo = pesomaximo
 
     elif tipo == 1:
         while True:
@@ -65,9 +71,9 @@ def menuCadastrarVoo():
     elif tipo == 2:
         novoVoo = Fretado(numeroVoo, origem, destino, horario)
         while True:
-            assentos = int(input('Número de assentos: '))
+            assentos = int(input(colored('Número de assentos: ', 'blue')))
             if assentos <= 0:
-                print('Número invalido, tente novamente')
+                print(colored('Número invalido, tente novamente', 'red'))
             else:
                 break
         novoVoo.numeroAssentos = assentos
@@ -102,15 +108,17 @@ def menuCancelarVoo():
     mostrarVoos(reservas.voosRegistrados)
     while True:
         vooEscolhido = input(colored('Digite o número do vôo que deseja cancelar: ', 'blue'))
-        if len(vooEscolhido) != 5:
-            print('Número invalido. ')
-        else:
+        if len(vooEscolhido) == 5:
+            for voo in reservas.voosRegistrados:
+                if voo.numeroDeVoo == vooEscolhido:
+                    reservas.cancelarVoo(voo)
+                else:
+                    print(colored('Esse vôo não existe.', 'red'))
             break
-    for voo in reservas.voosRegistrados:
-        if voo.numeroDeVoo == vooEscolhido:
-            reservas.cancelarPassagem(voo)
+            
         else:
-            print(colored('Esse vôo não existe.', 'red'))
+            print('Número invalido. ')
+    
     # reservas.cancelarVoo()
 
 
