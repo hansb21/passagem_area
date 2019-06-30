@@ -23,7 +23,7 @@ def menuCliente(cliento):
 
 def menuCadastrarPassagem():
     mostrarVoos(reservas.voosRegistrados)
-    vooEscolhido = input('Digite o número do vôo que deseja comprar: ')
+    vooEscolhido = input(colored('Digite o número do vôo que deseja comprar: ', 'green'))
     os.system('clear')
 
     for voo in reservas.voosRegistrados:
@@ -31,19 +31,20 @@ def menuCadastrarPassagem():
             voo.reservarPassagem(cliente)
             return
     else:
-        input('Não foi possível cadastrar essa passagem')
+        input(colored('Não foi possível cadastrar essa passagem', 'green'))
 
 def menuConsultarPassagem():
     mostrarVoos(cliente.getVoosComprados())
-    input('Pressione qualquer tecla para voltar: ')
+    input(colored('Pressione qualquer tecla para voltar: ', 'green'))
 
 def menuCancelarPassagem():
     voosCancelaveis = cliente.getVoosComprados()
     mostrarVoos(voosCancelaveis)
-    vooEscolhido = input('Digite o número do vôo que deseja cancelar: ')
+    vooEscolhido = input(colored('Digite o número do vôo que deseja cancelar: ','green'))
 
     for voo in voosCancelaveis:
         if voo.numeroDeVoo == vooEscolhido:
             reservas.cancelarPassagem(voo)
-    else:
-        input('Não foi possível cancelar essa passagem')
+            print(colored('Vôo cancelado com sucesso.', 'green'))
+        else:
+            input(colored('Não foi possível cancelar essa passagem', 'red'))

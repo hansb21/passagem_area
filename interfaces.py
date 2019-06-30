@@ -8,14 +8,14 @@ from reservas import *
 def mostrarApresentacao():
     os.system('clear')
     
-    print(colored('       BEM VINDO AO SISTEMA DE PASSAGENS AÉREAS        ', 'red'))    
+    print(colored('       BEM VINDO AO SISTEMA DE PASSAGENS AÉREAS        ', 'yellow'))    
 
     print('*' * 55)
-    print(colored('****** ****** **  ** ****** **   **  ** ******  **   **', 'blue'))
-    print(colored('**     **  ** **  **   **   ** * **  ** **      ** **  ', 'blue'))
-    print(colored('****** ****** **  **   **   **  ***  ** **      ****   ', 'blue'))
-    print(colored('    ** **     **  **   **   **   **  ** **      ** **  ', 'blue'))
-    print(colored('****** **     ******   **   **   **  ** ******  **   **', 'blue'))
+    print(colored('****** ****** **  ** ****** **   **  ** ******  **   **', 'red'))
+    print(colored('**     **  ** **  **   **   ** * **  ** **      ** **  ', 'red'))
+    print(colored('****** ****** **  **   **   **  ***  ** **      ****   ', 'red'))
+    print(colored('    ** **     **  **   **   **   **  ** **      ** **  ', 'red'))
+    print(colored('****** **     ******   **   **   **  ** ******  **   **', 'red'))
     print('*' * 55)
 
     input()
@@ -23,19 +23,19 @@ def mostrarApresentacao():
 def mostrarMenuPrincipal(n):
     os.system('clear')
 
-    corOperador, corCliente = 'green', 'green'
+    corOperador, corCliente = 'red', 'red'
 
     if n == 0:
-        corOperador = 'red'
+        corOperador = 'white'
     elif n == 1:
-        corCliente  = 'red'
+        corCliente  = 'white' 
 
-    print(colored('**************************', 'green'))
+    print(colored('**************************', 'yellow'))
     print(colored('0 - Operador              ',  corOperador))
     print(colored('1 - Cliente               ',  corCliente))
-    print(colored('2 - Sair                  ', 'green'))
+    print(colored('2 - Sair                  ', 'red'))
     print()
-    print(colored('Como você deseja acessar: ', 'green'), end = '')
+    print(colored('Como você deseja acessar: ', 'red'), end = '')
     print()
     time.sleep(0.5)
 
@@ -54,34 +54,32 @@ def mostrarMenuCliente(nome):
 def mostrarMenuOperador():
     os.system('clear')
 
-    print(colored('MENU OPERADOR:            ', 'green'))
-    print(colored('**************************', 'red'  ))
-    print(colored('0 - Cadastrar Vôo         ', 'green'))
-    print(colored('1 - Consultar Vôos        ', 'green'))
-    print(colored('2 - Cancelar Vôos         ', 'green'))
-    print(colored('3 - Voltar                ', 'green'))
+    print(colored('MENU OPERADOR:            ', 'blue'))
+    print(colored('**************************', 'magenta'))
+    print(colored('0 - Cadastrar Vôo         ', 'blue'))
+    print(colored('1 - Consultar Vôos        ', 'blue'))
+    print(colored('2 - Cancelar Vôos         ', 'blue'))
+    print(colored('3 - Voltar                ', 'blue'))
     print()
-    print(colored('Como você deseja acessar?: ', 'green'), end = '')
+    print(colored('Como você deseja acessar?: ', 'blue'), end = '')
 
 def mostrarTiposVoo():
     os.system('clear')
-
-    print('0 - Transporte')
-    print('1 - Comercial ')
-    print('2 - Fretado   ')
+    for i in ['0 - Transporte', '1 - Comercial', '2 - Fretado']:
+        print(colored(i, 'blue'))
     print()
-    print('Escolha o tipo de vôo: ', end = '')
+    print(colored('Escolha o tipo de vôo: ', 'blue'), end = '')
 
 def mostrarVoos(lista):
     os.system('clear')
     
-    print('*'*55)
+    print(colored('*'*55, 'blue'))
     if lista == []:
-        print('Não há voos para mostrar =(')
+        print(colored('Não há voos para mostrar =(', 'red'))
 
     for voo in lista:
         voo.mostrarInformacoes()
-    print('*'*55)
+    print(colored('*'*55, 'blue'))
 
 def mostrarRestricoesAlimentares():
     print(colored('- Sem glúten       ', 'green'))
@@ -89,3 +87,4 @@ def mostrarRestricoesAlimentares():
     print(colored('- Cardápio Infantil', 'green'))
     print()
     print(colored('Quantas das restrições acima você possui?: ', 'green'), end = '')
+    

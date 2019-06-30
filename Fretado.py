@@ -1,5 +1,6 @@
 import os
-
+from colorama import init
+from termcolor import colored
 from Voos import *
 
 class Fretado(Voos):
@@ -33,12 +34,16 @@ class Fretado(Voos):
     def reservarPassagem(self, cliente):
         os.system('clear')
 
-        print(f'Tipo: Avião {self.tipo} \n')
-        print('Quantas passagens deseja reservar?')
-        numPassagens = int(input())
-
+        print(colored(f'Tipo: Avião {self.tipo} \n', 'green'))
+        print(colored('Quantas passagens deseja reservar?', 'green'))
+        while True:
+            numPassagens = int(input())
+            if numPassagens <= 0:
+                print(colored('Número de passagens invalido!', 'red'))
+            else:
+                break
         if numPassagens > self.getAssentosDisponiveis():
-            input('Não há mais assentos disponíveis')
+            input(colored('Não há mais assentos disponíveis', 'red'))
             return
 
         preco = (numPassagens * reservas.precoFretado) + (self.distancia * reservas.precoPorKm / self.numeroAssentos)
@@ -46,8 +51,8 @@ class Fretado(Voos):
         while True:
             os.system('clear')
 
-            print(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?')
-            print('s/n')
+            print(colored(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?', 'green'))
+            print(colored('s/n','green'))
             opcao = input().lower()
 
             if opcao == 's':

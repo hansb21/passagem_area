@@ -1,5 +1,6 @@
 import os
-
+from colorama import init
+from termcolor import colored
 from Voos import *
 from interfaces import *
 
@@ -37,16 +38,20 @@ class Comercial(Voos):
 
     def reservarPassagem(self, cliente):
         os.system('clear')
-        print(f'Tipo: Avião {self.tipo}')
-
-        print('Quantas passagens deseja reservar?')
-        numPassagens = int(input())
-
+        print(colored(f'Tipo: Avião {self.tipo}', 'green'))
+        while True:
+            print('Quantas passagens deseja reservar?')
+            numPassagens = int(input())
+            if numPassagens <= 0:
+                print('Número de passagens invalido.')
+            else:
+                break
+            
         global classe
 
         while True:
-            print('0 - Primeira Classe')
-            print('1 - Economica')
+            print(colored('0 - Primeira Classe.', 'green'))
+            print(colored('1 - Economica.''green'))
             opcao = input()
 
             if opcao == '0':
@@ -58,7 +63,7 @@ class Comercial(Voos):
 
         # deus que me perdoe por essa gambiarra
         if numPassagens > self.getAssentosDisponiveis(classe):
-            input('Desculpe, não há mais assentos disponíveis')
+            input('Desculpe, não há mais assentos disponíveis nesse vôo.')
 
             if classe == 'primeira':
                 classe = 'economica'
@@ -81,7 +86,14 @@ class Comercial(Voos):
                         break 
 
         mostrarRestricoesAlimentares()
-        restricaoAlimentar = int(input())
+        while True:
+            restricaoAlimentar = int(input())
+            if restricaoAlimentar < 0:
+                print(colored('Número invalido.','red'))
+            else:
+                break
+            
+
 
         preco = numPassagens * reservas.precoComercial
         preco += (preco * 0.05) * restricaoAlimentar
@@ -94,8 +106,8 @@ class Comercial(Voos):
             preco -= preco * 0.25
 
         while True:
-            print(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?')
-            print('S/N')
+            print(colored(f'o preço da passagem é R$ {preco:.2f}, deseja continuar?','green'))
+            print(colored('S/N','green'))
             opcao = input().lower()
             os.system('clear')
 
@@ -108,4 +120,5 @@ class Comercial(Voos):
                 classe = 'primeira'
             
         reservas.novaPassagem({'voo': self, 'cliente':cliente, 'assentos':numPassagens, 'classe':classe})
-        input('Vôo cadastrado com sucesso!')
+        print(colored('Vôo cadastrado com sucesso!', 'red'))
+        input(colored('Boa viagem!', 'red'))
